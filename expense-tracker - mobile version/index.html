@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Main Page -->
+    <div id="mainPage" class="container">
+      <div class="header">
+        <h1>Expense Tracker</h1>
+        <p>Track your daily expenses easily</p>
+      </div>
+
+      <div class="balance-card">
+        <p>Total Balance</p>
+        <h2 id="totalBalance">$2,450</h2>
+      </div>
+
+      <div class="categories-section">
+        <h3>Categories</h3>
+        <div class="categories-grid">
+          <button class="category-btn">Food</button>
+          <button class="category-btn">Shopping</button>
+          <button class="category-btn">Bills</button>
+          <button class="category-btn">Travel</button>
+        </div>
+      </div>
+
+      <button class="add-expense-btn" onclick="showAddExpense()">
+        Add Expense
+      </button>
+    </div>
+
+    <!-- Add Expense Page -->
+    <div id="addExpensePage" class="container hidden">
+      <div class="header">
+        <h1>Add Expense</h1>
+      </div>
+
+      <form id="expenseForm" style="margin-top: 30px">
+        <div class="form-group">
+          <input
+            type="number"
+            id="amount"
+            placeholder="Enter amount"
+            step="0.01"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <div class="dropdown-custom">
+            <div class="dropdown-selected" onclick="toggleDropdown()">
+              <span id="selectedCategory">Select category</span>
+              <span>▼</span>
+            </div>
+            <div class="dropdown-options" id="dropdownOptions">
+              <div class="dropdown-option" onclick="selectCategory('Food')">
+                Food
+              </div>
+              <div class="dropdown-option" onclick="selectCategory('Shopping')">
+                Shopping
+              </div>
+              <div class="dropdown-option" onclick="selectCategory('Bills')">
+                Bills
+              </div>
+              <div class="dropdown-option" onclick="selectCategory('Travel')">
+                Travel
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <textarea id="note" placeholder="Write a note..."></textarea>
+        </div>
+
+        <button type="submit" class="add-expense-btn">Save Expense</button>
+        <button type="button" class="back-btn" onclick="showMain()">
+          Back
+        </button>
+      </form>
+    </div>
+
+    <!-- History Page -->
+    <div id="historyPage" class="container hidden">
+      <div class="history-header">
+        <h2>History</h2>
+        <div class="spent-card">
+          <p>This Month</p>
+          <h3>Spent: $1,250</h3>
+        </div>
+      </div>
+
+      <div id="expensesList">
+        <div class="expense-item">
+          <div class="expense-info">
+            <h4>Food</h4>
+            <p>Dinner at KFC</p>
+          </div>
+          <div class="expense-amount">
+            <h4>$2.49</h4>
+            <p>11/06/25</p>
+          </div>
+        </div>
+
+        <div class="expense-item">
+          <div class="expense-info">
+            <h4>Shopping</h4>
+            <p></p>
+          </div>
+          <div class="expense-amount">
+            <h4>$200</h4>
+            <p>11/06/25</p>
+          </div>
+        </div>
+
+        <div class="expense-item">
+          <div class="expense-info">
+            <h4>Travel</h4>
+            <p>Bali Tour</p>
+          </div>
+          <div class="expense-amount">
+            <h4>$809.01</h4>
+            <p>02/06/25</p>
+          </div>
+        </div>
+
+        <div class="expense-item">
+          <div class="expense-info">
+            <h4>Bills</h4>
+            <p>AB Bills</p>
+          </div>
+          <div class="expense-amount">
+            <h4>$249.5</h4>
+            <p>04/06/25</p>
+          </div>
+        </div>
+      </div>
+
+      <button class="back-btn" onclick="showMain()" style="margin-top: 30px">
+        Back
+      </button>
+    </div>
+
+    <!-- Success Page -->
+    <div id="successPage" class="container hidden">
+      <div class="success-container">
+        <div class="success-icon"></div>
+        <p class="success-message">Expense Saved Successfully!</p>
+        <button class="add-expense-btn" onclick="showMain()">
+          Back to Home
+        </button>
+        <button class="back-btn" onclick="showHistory()">View History</button>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Manager</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Login Page -->
+    <div id="loginPage" class="auth-page">
+      <div class="auth-card">
+        <h2>Login to Your Account</h2>
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="loginUsername">Username</label>
+            <input type="text" id="loginUsername" required />
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" required />
+          </div>
+          <button type="submit" class="btn-primary">Login</button>
+          <p class="auth-link">
+            Don't have an account? <a href="#" id="showRegister">Sign up</a>
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Register Page -->
+    <div id="registerPage" class="auth-page" style="display: none">
+      <div class="auth-card">
+        <h2>Create Account</h2>
+        <form id="registerForm">
+          <div class="form-group">
+            <label for="registerUsername">Username</label>
+            <input type="text" id="registerUsername" required minlength="3" />
+          </div>
+          <div class="form-group">
+            <label for="registerPassword">Password</label>
+            <input
+              type="password"
+              id="registerPassword"
+              required
+              minlength="6"
+            />
+          </div>
+          <div class="form-group">
+            <label for="registerConfirmPassword">Confirm Password</label>
+            <input
+              type="password"
+              id="registerConfirmPassword"
+              required
+              minlength="6"
+            />
+          </div>
+          <button type="submit" class="btn-primary">Sign Up</button>
+          <p class="auth-link">
+            Already have an account? <a href="#" id="showLogin">Login</a>
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="mainApp" class="container" style="display: none">
+      <!-- Header -->
+      <div class="header">
+        <div class="user-welcome">
+          <span>Hello, </span>
+          <span id="userName" class="user-name"></span>
+        </div>
+        <div class="header-actions">
+          <button id="themeToggle" class="btn-theme" title="Toggle Theme">
+            <span class="theme-icon">🌙</span>
+          </button>
+          <button id="logoutBtn" class="btn-logout">Logout</button>
+        </div>
+      </div>
+
+      <!-- Balance Card -->
+      <div class="balance-card">
+        <div class="balance-label">Total Balance</div>
+        <div class="balance-amount" id="totalBalance">$0</div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button class="btn-action btn-expense" id="addExpenseBtn">
+          <span class="btn-icon">➖</span>
+          <span class="btn-text">Add Expense</span>
+        </button>
+        <button class="btn-action btn-income" id="addIncomeBtn">
+          <span class="btn-icon">➕</span>
+          <span class="btn-text">Add Income</span>
+        </button>
+      </div>
+
+      <!-- Recent Transactions -->
+      <div class="recent-section">
+        <div class="section-header">
+          <h3>Recent Transactions</h3>
+          <a href="#" id="viewAllBtn" class="view-all">View All</a>
+        </div>
+        <div id="recentList" class="expense-list">
+          <!-- Transactions will be added here -->
+        </div>
+      </div>
+
+      <!-- History Page -->
+      <div id="historyPage" style="display: none">
+        <div class="section-header">
+          <h3>Transaction History</h3>
+          <a href="#" id="backToMainBtn" class="view-all">Back</a>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+          <select id="filterType" class="filter-select">
+            <option value="all">All</option>
+            <option value="expense">Expenses</option>
+            <option value="income">Income</option>
+          </select>
+          <select id="filterCategory" class="filter-select">
+            <option value="all">All Categories</option>
+            <option value="Food">Food</option>
+            <option value="Transport">Transport</option>
+            <option value="Shopping">Shopping</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Salary">Salary</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div id="historyList" class="expense-list">
+          <!-- All transactions will be shown here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Expense Modal -->
+    <div id="expenseModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Add Expense</h3>
+          <span class="close-btn" id="closeExpenseModal">&times;</span>
+        </div>
+        <form id="expenseForm">
+          <div class="form-group">
+            <label for="expenseAmount">Amount ($)</label>
+            <input type="number" id="expenseAmount" required min="0" />
+          </div>
+          <div class="form-group">
+            <label for="expenseCategory">Category</label>
+            <select id="expenseCategory" required>
+              <option value="">Select</option>
+              <option value="Food">Food</option>
+              <option value="Transport">Transport</option>
+              <option value="Shopping">Shopping</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="expenseNote">Note</label>
+            <input type="text" id="expenseNote" placeholder="Optional" />
+          </div>
+          <button type="submit" class="btn-primary">Add Expense</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Add Income Modal -->
+    <div id="incomeModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Add Income</h3>
+          <span class="close-btn" id="closeIncomeModal">&times;</span>
+        </div>
+        <form id="incomeForm">
+          <div class="form-group">
+            <label for="incomeAmount">Amount ($)</label>
+            <input type="number" id="incomeAmount" required min="0" />
+          </div>
+          <div class="form-group">
+            <label for="incomeCategory">Category</label>
+            <select id="incomeCategory" required>
+              <option value="">Select</option>
+              <option value="Salary">Salary</option>
+              <option value="Bonus">Bonus</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="incomeNote">Note</label>
+            <input type="text" id="incomeNote" placeholder="Optional" />
+          </div>
+          <button type="submit" class="btn-primary">Add Income</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
