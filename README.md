@@ -1,8 +1,8 @@
-Expense Tracker
+#Expense Tracker
 
 A simple and responsive expense tracking application built with JavaScript.
 
-Features
+#Features
 
 - Add income and expenses
 - Delete transactions
@@ -10,7 +10,7 @@ Features
 - Store data using Local Storage
 - Responsive design
 
-Technologies Used
+#Technologies Used
 
 - HTML5
 - CSS3
@@ -20,6 +20,8 @@ Technologies Used
 Project Purpose
 
 This project was developed to improve JavaScript skills, state management, and browser storage handling.
+
+#screenshots added
 
 Author
 
